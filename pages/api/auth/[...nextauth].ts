@@ -12,7 +12,7 @@ export default NextAuth({
             name: 'credentials',
             credentials: {
                 email: {label: 'email', type: 'text'},
-                password: {label: 'email', type: 'password'},
+                password: {label: 'password', type: 'password'},
             },
             async authorize(credentials){
                 if(!credentials?.email || !credentials?.password){
