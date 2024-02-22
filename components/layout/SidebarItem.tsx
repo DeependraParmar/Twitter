@@ -19,7 +19,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({href, label, icon: Icon, onCli
     }
 
     if(href){
-
       router.push(href);
     }
   }, [router, onClick, href]);

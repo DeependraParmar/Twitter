@@ -34,6 +34,7 @@ const RegisterModal = () => {
                 name, username, email, password
             })
 
+            setIsLoading(false);
             toast.success('Account Created 🤩');
             
             signIn('credentials', {
