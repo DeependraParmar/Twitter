@@ -34,7 +34,7 @@ const LoginModal = () => {
     )
 
     return (
-        <Modal body={bodyContent} title="Login" disabled={isLoading} isOpen={loginModal.isOpen} onClose={loginModal.onClose} actionLabel="Sign in" onSubmit={onSubmit} />
+        <Modal body={bodyContent} title="Login" disabled={isLoading} isOpen={loginModal.isOpen} onClose={loginModal.onClose} actionLabel="Login" onSubmit={onSubmit} />
     )
 }
 
