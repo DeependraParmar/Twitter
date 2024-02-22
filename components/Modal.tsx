@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onSubmit, title, body, f
                     {/* content */}
                     <div className="h-full lg:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-black outline-none focus:outline-none">
                         {/* Header */}
-                        <div className="flex items-center justify-between p-10 rounded-t ">
+                        <div className="flex items-center justify-between px-10 py-10 rounded-t ">
                             <h3 className="text-3xl font-semibold text-white">{title}</h3>
                             <button onClick={handleClose} className="p-1 ml-auto border-0 text-white hover:opacity-70 transition"><AiOutlineClose size={24} /></button>
                         </div>
