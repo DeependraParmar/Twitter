@@ -7,7 +7,7 @@ interface RegisterModalProps{
 }
 
 const useRegisterModal = create<RegisterModalProps>((set) => ({
-    isOpen: false,
+    isOpen: true,
     onOpen: () => set({isOpen: true}),
     onClose: () => set({isOpen: false})
 }));
