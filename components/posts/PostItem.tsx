@@ -4,8 +4,8 @@ import { formatDistanceToNowStrict } from "date-fns";
 import { useRouter } from "next/router"
 import { useCallback, useMemo } from "react";
 import Avatar from "../Avatar";
-import { AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
-import { ClipLoader } from "react-spinners";
+import { AiOutlineHeart,AiFillHeart, AiOutlineMessage } from "react-icons/ai";
+import useLike from "@/hooks/useLike";
 
 interface PostItemProps {
     data: Record<string, any>
@@ -16,8 +16,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     const router = useRouter();
     const loginModal = useLoginModal();
 
-    console.log(data);
     const { data: currentUser } = useCurrentUser();
+    const {hasLiked, toggleLike} = useLike({postId: data.id, userId: userId});
 
     const goToUser = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
@@ -31,8 +31,12 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     const onLike = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
 
-        loginModal.onOpen();
-    }, [loginModal]);
+        if(!currentUser){
+            loginModal.onOpen();
+        }
+
+        toggleLike();
+    }, [loginModal, currentUser, toggleLike]);
 
     const cancelGoToPost = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
@@ -45,6 +49,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
 
         return formatDistanceToNowStrict(new Date(data.createdAt));
     }, [data?.createdAt]);
+
+    const LikedIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
 
     return (
         <div className="border-b-[1px] border-neutral-900 p-5 cursor-pointer hover:bg-neutral-900 transition" onClick={goToPost}>
@@ -63,8 +69,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                             <p>{data.comments?.length || 0}</p>
                         </div>
                         <div onClick={(e) => onLike(e)} className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-red-500">
-                            <AiOutlineHeart size={20} />
-                            <p>{data.likedIds?.length || 0}</p>
+                            <LikedIcon size={20} className={hasLiked ? 'text-red-500' : ''} />
+                            <p>{data.likedIds.length}</p>
                         </div>
                     </div>
                 </div>
