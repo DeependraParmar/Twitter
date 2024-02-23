@@ -16,7 +16,32 @@ export default function App({ Component, pageProps }: AppProps) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-      <Toaster />
+      <Toaster position="top-right"
+        reverseOrder={false}
+        gutter={8}
+        toastOptions={{
+          duration: 5000,
+          style: {
+            background: 'black',
+            color: 'white',
+            border: '1px solid gray',
+            fontWeight: 'normal',
+          },
+          success: {
+            iconTheme: {
+              primary: 'green',
+              secondary: 'white'
+            }
+          },
+          error: {
+            iconTheme: {
+              primary: 'red',
+              secondary: 'white'
+            }
+          }
+        }}
+        
+        />
     </SessionProvider>
   )
 }
