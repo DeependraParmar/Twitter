@@ -17,10 +17,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
 
     const { data: currentUser } = useCurrentUser();
 
-    const goToUser = useCallback((event: any) => {
-        if (event.stopPropogation) {
-            event.stopPropogation();
-        }
+    const goToUser = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
 
         router.push(`/users/${data.user.id}`);
     }, [router, data.user.id]);
@@ -46,7 +44,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     return (
         <div className="border-b-[1px] border-neutral-900 p-5 cursor-pointer hover:bg-neutral-900 transition" onClick={goToPost}>
             <div className="flex flex-row items-start gap-3">
-                <Avatar userId={data.user.id} />
+                <Avatar userId={data.user.id}  />
                 <div>
                     <div className="flex flex-row items-center gap-2">
                         <p onClick={goToUser} className="text-white font-semibold cursor-pointer hover:underline">{data.user.name}</p>
