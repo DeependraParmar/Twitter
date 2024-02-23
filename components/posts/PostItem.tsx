@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import { useCallback, useMemo } from "react";
 import Avatar from "../Avatar";
 import { AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
+import { ClipLoader } from "react-spinners";
 
 interface PostItemProps {
     data: Record<string, any>
@@ -15,11 +16,11 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     const router = useRouter();
     const loginModal = useLoginModal();
 
+    console.log(data);
     const { data: currentUser } = useCurrentUser();
 
     const goToUser = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
-
         router.push(`/users/${data.user.id}`);
     }, [router, data.user.id]);
 
