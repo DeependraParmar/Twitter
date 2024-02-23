@@ -12,7 +12,7 @@ const PostFeed: React.FC<PostFeedProps> = ({ userId }) => {
 
   if(posts?.length === 0){
     return (
-      <div className='flex items-center justify-center w-full h-full'>
+      <div className='flex items-center justify-center w-full h-52'>
         <ClipLoader color='lightblue' size={60} />
       </div>
     )

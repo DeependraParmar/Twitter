@@ -26,7 +26,7 @@ const UserView = () => {
         <Header label={fetchedUser?.name} showBackArrow /> 
         <UserHero userId={userId as string} />
         <UserBio userId={userId as string} />
-        <PostFeed />
+        <PostFeed userId={userId as string} />
     </>
   )
 }
