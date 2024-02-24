@@ -1,3 +1,5 @@
+import { ClipLoader } from "react-spinners"
+
 interface ButtonProps{
     label: string,
     secondary?: boolean,

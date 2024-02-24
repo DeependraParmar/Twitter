@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { userId } = req.body;
         const { currentUser } = await serverAuth(req,res);
 
-        if(!userId || typeof userId !== 'string'){
+        if (!userId || typeof userId !== 'string' || !currentUser?.id){
             throw new Error("Invalid ID");
         }
 
@@ -24,16 +24,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         let updatedFollowingIds = [...(user.followingIds || [])];
+        console.log(user.followingIds);
         
         if(req.method === 'POST'){
             updatedFollowingIds.push(userId);
         }
         if(req.method === 'DELETE'){
-            updatedFollowingIds = updatedFollowingIds.filter(followindId => followindId !== userId);
+            updatedFollowingIds = updatedFollowingIds.filter((followingId) => followingId !== userId);
         }
 
         const updatedUser = await prisma.user.update({
-            where: {id: currentUser?.id},
+            where: {id: currentUser.id},
             data: {followingIds: updatedFollowingIds}
         });
 
