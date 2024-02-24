@@ -15,7 +15,7 @@ export default async function(req: NextApiRequest, res: NextApiResponse){
             const post = await prisma.post.create({
                 data: {
                     body,
-                    userId: currentUser?.id
+                    userId: currentUser?.id ?? 'undefined'
                 }
             });
 
