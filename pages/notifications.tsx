@@ -6,7 +6,7 @@ import { getSession } from "next-auth/react"
 // protecting the /notification route here 
 export async function getServerSideProps(context: NextPageContext){
     const session = await getSession(context);
-    
+
     if(!session){
         return {
             redirect: {
@@ -24,6 +24,7 @@ export async function getServerSideProps(context: NextPageContext){
 }
 
 const Notifications = () => {
+    document.title = "Your Notifications";
   return (
     <>
         <Header label="Notifications" showBackArrow />

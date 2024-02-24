@@ -21,6 +21,8 @@ const PostView = () => {
         )
     }
 
+    document.title = 'Tweets | Twitter';
+
     return (
         <>
             <Header label='Tweet' showBackArrow />

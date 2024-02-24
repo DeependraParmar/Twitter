@@ -9,11 +9,11 @@ import { ClipLoader } from 'react-spinners';
 
 const UserView = () => {
     const router = useRouter();
-    const {userId} = router.query;
+    const { userId } = router.query;
 
-    const {data: fetchedUser, isLoading} = useUser(userId as string);
+    const { data: fetchedUser, isLoading } = useUser(userId as string);
 
-    if(isLoading || !fetchedUser){
+    if (isLoading || !fetchedUser) {
         return (
             <div className="flex justify-center items-center h-full">
                 <ClipLoader color='lightblue' size={80} />
@@ -21,14 +21,16 @@ const UserView = () => {
         )
     }
 
-  return (
-    <>
-        <Header label={fetchedUser?.name} showBackArrow /> 
-        <UserHero userId={userId as string} />
-        <UserBio userId={userId as string} />
-        <PostFeed userId={userId as string} />
-    </>
-  )
+    document.title = 'Profile | Twitter'
+
+    return (
+        <>
+            <Header label={fetchedUser?.name} showBackArrow />
+            <UserHero userId={userId as string} />
+            <UserBio userId={userId as string} />
+            <PostFeed userId={userId as string} />
+        </>
+    )
 }
 
 export default UserView
