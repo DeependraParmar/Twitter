@@ -21,7 +21,6 @@ const UserView = () => {
         )
     }
 
-    document.title = 'Profile | Twitter'
 
     return (
         <>

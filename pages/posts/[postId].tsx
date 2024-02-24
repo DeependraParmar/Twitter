@@ -21,7 +21,6 @@ const PostView = () => {
         )
     }
 
-    document.title = 'Tweets | Twitter';
 
     return (
         <>
