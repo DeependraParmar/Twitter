@@ -4,7 +4,7 @@ import { formatDistanceToNowStrict } from "date-fns";
 import { useRouter } from "next/router"
 import { useCallback, useMemo } from "react";
 import Avatar from "../Avatar";
-import { AiOutlineHeart,AiFillHeart, AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart, AiOutlineMessage } from "react-icons/ai";
 import useLike from "@/hooks/useLike";
 
 interface PostItemProps {
@@ -17,7 +17,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     const loginModal = useLoginModal();
 
     const { data: currentUser } = useCurrentUser();
-    const {hasLiked, toggleLike} = useLike({postId: data.id, userId: userId });
+    const { hasLiked, toggleLike } = useLike({ postId: data.id, userId: userId });
 
     const goToUser = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
@@ -31,7 +31,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     const onLike = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
 
-        if(!currentUser){
+        if (!currentUser) {
             loginModal.onOpen();
         }
 
@@ -55,13 +55,16 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     return (
         <div className="border-b-[1px] border-neutral-900 p-5 cursor-pointer hover:bg-neutral-900 transition" onClick={goToPost}>
             <div className="flex flex-row items-start gap-3">
-                <Avatar userId={data.user.id}  />
                 <div>
+                    <Avatar userId={data.user.id} />
+                </div>
+                <div className="flex flex-col">
                     <div className="flex flex-row items-center gap-2">
                         <p onClick={goToUser} className="text-white font-semibold cursor-pointer hover:underline">{data.user.name}</p>
-                        <span onClick={goToUser} className="text-neutral-500 cursor-pointer hover:underline md:block">@{data.user.username}</span>
-                    <span className="text-neutral-500 text-sm">{createdAt}</span>
+                        <span onClick={goToUser} className="text-neutral-500 cursor-pointer hover:underline hidden md:block">@{data.user.username}</span>
+                        <span className="text-neutral-500 text-sm hidden md:block">{createdAt}</span>
                     </div>
+                    <span className="text-neutral-500 text-sm md:hidden">{createdAt}</span>
                     <div onClick={cancelGoToPost} className="text-white mt-1">{data.body}</div>
                     <div className="flex flex-row items-center mt-3 gap-10">
                         <div className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-sky-500">

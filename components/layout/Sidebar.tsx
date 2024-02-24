@@ -10,11 +10,9 @@ import { signOut } from 'next-auth/react'
 
 const Sidebar = () => {
     const { data:currentUser } = useCurrentUser();
+
     const handleLogout = async() => {
-        console.log("Before logout");
         await signOut();
-        console.log("After logout");
-        
     }
 
     const items = [
@@ -28,6 +26,7 @@ const Sidebar = () => {
             href: "/notifications",
             icon: BsBellFill,
             auth: true,
+            alert: currentUser?.hasNotification,
         },
         {
             label: "Profile",
@@ -43,7 +42,7 @@ const Sidebar = () => {
                     <SidebarLogo />
                     {
                         items.map((item, index) => (
-                            <SidebarItem key={index} href={item.href} auth={item.auth} label={item.label} icon={item.icon} />
+                            <SidebarItem key={index} href={item.href} auth={item.auth} label={item.label} icon={item.icon} alert={item.alert} />
                         ))
                     }
                     {
