@@ -2,6 +2,12 @@ import serverAuth from "@/libs/serverAuth";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/libs/prismadb"
 
+export const config = {
+    api: {
+        responseLimit: '10mb'
+    }
+}
+
 export default async function(req: NextApiRequest, res: NextApiResponse){
     if(req.method !== 'GET' && req.method !== 'POST'){
         return res.status(405).end();
